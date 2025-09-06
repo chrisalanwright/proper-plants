@@ -4,5 +4,19 @@ import PlantList from "./components/PlantList";
 import PlantDetails from "./components/PlantDetails";
 
 export default function App() {
-  return <></>;
+  const [plants] = useState(plants);
+  const [selectedPlant, setSelectedPlant] = useState();
+  if (!selectedPlant) {
+    return <div>Please select a plant to learn more.</div>;
+  }
+  return (
+    <>
+      <PlantList
+        plants={plants}
+        selectedPlant={selectedPlant}
+        setSelectedPlant={setSelectedPlant}
+      />
+      <PlantDetails plant={selectedPlant} />
+    </>
+  );
 }

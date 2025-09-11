@@ -18,10 +18,26 @@ export default function App() {
       }
     });
   };
+
+  const updateQuantity = (plantId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(plantId);
+    } else {
+      setCart((currentCart) =>
+        currentCart.map((item) =>
+          item.id === plantId ? { ...item, quantity: newQuantity } : item
+        )
+      );
+    }
+  };
+
+  const removeFromCart = (plantId) => {
+    setCart((currentCart) => currentCart.filter((item) => item.id !== plantId));
+  };
   return (
     <>
       <PlantList plants={PLANTS} addToCart={addToCart} />
-      <Cart cart={cart} />
+      <Cart cart={cart} updateQuantity={updateQuantity} />
     </>
   );
 }

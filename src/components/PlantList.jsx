@@ -1,3 +1,5 @@
+import Plant from "./Plant";
+
 export default function PlantList({ plants, addToCart }) {
   return (
     <div className="plant-list">
